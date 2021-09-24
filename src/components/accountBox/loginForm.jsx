@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import './loginForm.css'
 import {
   BoldLink,
   BoxContainer,
@@ -9,6 +10,7 @@ import {
 } from "./common";
 import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
+
 
 export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);

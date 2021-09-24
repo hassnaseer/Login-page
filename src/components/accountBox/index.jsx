@@ -6,12 +6,14 @@ import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
 const BoxContainer = styled.div`
-  width: 280px;
-  min-height: 550px;
+  width: 450px;
+  min-height: 600px;
   display: flex;
+  left: 30%;
   flex-direction: column;
   border-radius: 19px;
   background-color: #fff;
+  top:70px;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.28);
   position: relative;
   overflow: hidden;
@@ -19,7 +21,7 @@ const BoxContainer = styled.div`
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 250px;
+  height: 315px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -35,20 +37,18 @@ const BackDrop = styled(motion.div)`
   flex-direction: column;
   border-radius: 50%;
   transform: rotate(60deg);
-  top: -290px;
+  top: -300px;
   left: -70px;
-  background: rgb(241, 196, 15);
-  background: linear-gradient(
-    58deg,
-    rgba(241, 196, 15, 1) 20%,
-    rgba(243, 172, 18, 1) 100%
-  );
+  background: linear-gradient(58deg,
+  rgb(119, 56, 205) 20%,
+  rgba(192, 54, 146) 100%);
 `;
 
 const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const HeaderText = styled.h2`
@@ -57,7 +57,8 @@ const HeaderText = styled.h2`
   line-height: 1.24;
   color: #fff;
   z-index: 10;
-  margin: 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SmallText = styled.h5`
@@ -125,35 +126,35 @@ export function AccountBox(props) {
   const contextValue = { switchToSignup, switchToSignin };
 
   return (
-    <AccountContext.Provider value={contextValue}>
-      <BoxContainer>
-        <TopContainer>
-          <BackDrop
-            initial={false}
-            animate={isExpanded ? "expanded" : "collapsed"}
-            variants={backdropVariants}
-            transition={expandingTransition}
-          />
-          {active === "signin" && (
-            <HeaderContainer>
-              <HeaderText>Welcome</HeaderText>
-              <HeaderText>Back</HeaderText>
-              <SmallText>Please sign-in to continue!</SmallText>
-            </HeaderContainer>
-          )}
-          {active === "signup" && (
-            <HeaderContainer>
-              <HeaderText>Create</HeaderText>
-              <HeaderText>Account</HeaderText>
-              <SmallText>Please sign-up to continue!</SmallText>
-            </HeaderContainer>
-          )}
-        </TopContainer>
-        <InnerContainer>
-          {active === "signin" && <LoginForm />}
-          {active === "signup" && <SignupForm />}
-        </InnerContainer>
-      </BoxContainer>
-    </AccountContext.Provider>
+          <AccountContext.Provider value={contextValue}>
+            <BoxContainer>
+              <TopContainer>
+                <BackDrop
+                    initial={false}
+                    animate={isExpanded ? "expanded" : "collapsed"}
+                    variants={backdropVariants}
+                    transition={expandingTransition}
+                />
+                {active === "signin" && (
+                    <HeaderContainer>
+                      <HeaderText>Welcome</HeaderText>
+                      <HeaderText>Back</HeaderText>
+                      <SmallText>Please sign-in to continue!</SmallText>
+                    </HeaderContainer>
+                )}
+                {active === "signup" && (
+                    <HeaderContainer>
+                      <HeaderText>Create</HeaderText>
+                      <HeaderText>Account</HeaderText>
+                      <SmallText>Please sign-up to continue!</SmallText>
+                    </HeaderContainer>
+                )}
+              </TopContainer>
+              <InnerContainer>
+                {active === "signin" && <LoginForm />}
+                {active === "signup" && <SignupForm />}
+              </InnerContainer>
+            </BoxContainer>
+          </AccountContext.Provider>
   );
 }
